@@ -1,0 +1,15 @@
+assert_lefthook_installed: true
+pre-commit:
+  parallel: true
+  commands:
+    fmt:
+      run: mise run fmt
+      stage_fixed: true
+    lint:
+      run: mise run lint
+    test:
+      run: mise run test
+commit-msg:
+  commands:
+    commitlint:
+      run: mise exec -- commitlint --edit "$1"
