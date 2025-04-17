@@ -10,6 +10,7 @@ cargo-binstall = "1.10.15"
 "npm:remark-validate-links" = "8.0.0"
 "npm:remark-lint-no-dead-urls" = "1.1.0"
 "aqua:cue-lang/cue" = "0.12.1"
+"cargo:sd" = "1.0.0"
 
 [tasks."fmt"]
 depends = ["fmt:cue"]
