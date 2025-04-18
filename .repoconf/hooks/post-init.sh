@@ -39,7 +39,7 @@ done
     fi
   done
 
-  sd "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
+  mise exec "cargo:sd" "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
 
   mise exec "npm:lefthook" -- lefthook install
   mise run test
