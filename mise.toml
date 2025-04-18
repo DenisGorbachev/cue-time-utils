@@ -58,3 +58,6 @@ git commit --message "feat: update cue files"
 git pull
 git push
 """
+
+[tasks."eval"]
+run = "cue eval --inject-vars --concrete $(mise run find:cue) -e"
