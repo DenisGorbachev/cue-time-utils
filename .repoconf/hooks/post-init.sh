@@ -21,18 +21,10 @@ function validate_name() {
   return 0
 }
 
-if [[ -z $name ]]; then
-  while true; do
-    read -r -p "Cue module name (format: {hostname}/{path}) (example: \"example.com/my/module\"): " name
-    if validate_name "$name"; then
-      break
-    fi
-  done
-else
-  if ! validate_name "$name"; then
-    exit 1
-  fi
-fi
+echo "Validating Cue module name..."
+while ! validate_name "$name"; do
+  read -r -p "Cue module name (format: {hostname}/{path}) (example: \"example.com/my/module\"): " name
+done
 
 (
   cd "$dir"
