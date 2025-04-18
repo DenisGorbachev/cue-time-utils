@@ -31,6 +31,7 @@ done
 
   mise trust
   mise install
+  mise reshim
 
   files=("README.md" "LICENSE-APACHE" "LICENSE-MIT")
   for file in "${files[@]}"; do
@@ -39,9 +40,10 @@ done
     fi
   done
 
-  mise exec "cargo:sd" "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
+  sd "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
 
-  mise exec "npm:lefthook" -- lefthook install
+  lefthook install
+
   mise run test
 
   # remove .repoconf just before the final commit
