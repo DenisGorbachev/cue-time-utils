@@ -12,4 +12,4 @@ pre-commit:
 commit-msg:
   commands:
     commitlint:
-      run: mise exec -- commitlint --edit "$1"
+      run: mise run commitlint -- --edit "$1"
