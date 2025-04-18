@@ -1,6 +1,7 @@
 min_version = "2025.1.14"
 
 [tools]
+node = "23.11.0"
 cargo-binstall = "1.10.15"
 "npm:lefthook" = "1.8.5"
 "npm:@commitlint/config-conventional" = "19.6.0"
@@ -43,4 +44,14 @@ set -euo pipefail
 REMARK_VALIDATE_LINKS="$(mise where npm:remark-validate-links)/lib/node_modules/remark-validate-links/index.js"
 REMARK_LINT_NO_DEAD_URLS="$(mise where npm:remark-lint-no-dead-urls)/lib/node_modules/remark-lint-no-dead-urls/index.js"
 remark --ignore-path .gitignore --ignore-pattern CHANGELOG.md --quiet --frail --no-stdout --use "$REMARK_VALIDATE_LINKS" --use "$REMARK_LINT_NO_DEAD_URLS" "$@"
+"""
+
+[tasks."hurl:cue"]
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+git add $(mise run find:cue)
+git commit --message "feat: update cue files"
+git pull
+git push
 """

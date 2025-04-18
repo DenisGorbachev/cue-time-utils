@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "postCreateCommand": "mise trust && mise install",
   "customizations": {
     "vscode": {
       "extensions": [

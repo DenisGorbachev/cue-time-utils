@@ -25,4 +25,4 @@ ENV PATH="/mise/shims:$PATH"
 
 RUN curl https://mise.run | sh
 
-RUN mise install
+# NOTE: don't forget to run `mise install` after mounting the project inside the container
