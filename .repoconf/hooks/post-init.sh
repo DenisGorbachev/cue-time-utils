@@ -1,5 +1,5 @@
 #!/usr/bin/env -S usage bash
-#USAGE flag "-n --name <name>" help="Module name (must contain a hostname and a path) (for example: 'example.com/my/module')"
+#USAGE flag "-n --name <name>" help="Module name (must contain a hostname and a path) (for example: 'github.com/your-username/your-repo-name')"
 #USAGE arg "<dir>"
 
 set -xeuo pipefail
@@ -14,7 +14,7 @@ function validate_name() {
   if [[ -z "$name_to_validate" ]]; then
     echo "Module name cannot be empty." >&2
   elif [[ ! "$name_to_validate" =~ ^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+\/.+$ ]]; then
-    echo "Invalid format. Name must contain a hostname and a path separated by a slash (e.g., 'example.com/my/module'). Cannot be empty before or after the first slash." >&2
+    echo "Invalid format. Name must contain a hostname and a path separated by a slash (e.g., 'github.com/your-username/your-repo-name'). Cannot be empty before or after the first slash." >&2
     return 1
   fi
 
@@ -23,8 +23,10 @@ function validate_name() {
 
 echo "Validating Cue module name..."
 while ! validate_name "$name"; do
-  read -r -p "Cue module name (format: {hostname}/{path}) (example: \"example.com/my/module\"): " name
+  read -r -p "Cue module name (format: {hostname}/{path}) (example: \"github.com/your-username/your-repo-name\"): " name
 done
+
+name="${name}@v0"
 
 (
   cd "$dir"
