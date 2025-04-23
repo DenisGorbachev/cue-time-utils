@@ -13,8 +13,12 @@ function validate_name() {
   # Check 1: Not empty
   if [[ -z "$name_to_validate" ]]; then
     echo "Module name cannot be empty." >&2
-  elif [[ ! "$name_to_validate" =~ ^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+\/.+$ ]]; then
-    echo "Invalid format. Name must contain a hostname and a path separated by a slash (e.g., 'github.com/your-username/your-repo-name'). Cannot be empty before or after the first slash." >&2
+  elif [[ ! "$name_to_validate" =~ ^[a-z0-9]+(\.[a-z0-9]+)+\/.+$ ]]; then
+    echo "Invalid format." >&2
+    echo "Name must contain a hostname and a path separated by a slash." >&2
+    echo "Name must contain only lower case ASCII letters, ASCII digits, and limited ASCII punctuation (-, _, .)." >&2
+    echo "Name cannot be empty before or after the first slash." >&2
+    echo "Example: github.com/your-username/your-repo-name" >&2
     return 1
   fi
 
