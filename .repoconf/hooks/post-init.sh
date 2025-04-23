@@ -29,10 +29,6 @@ done
 (
   cd "$dir"
 
-  mise trust
-  mise install
-  mise reshim
-
   files=("README.md" "LICENSE-APACHE" "LICENSE-MIT")
   for file in "${files[@]}"; do
     if [[ -f "$file" ]]; then
@@ -40,10 +36,9 @@ done
     fi
   done
 
-  sd "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
-
-  lefthook install
-
+  mise trust
+  mise exec -- sd "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
+  mise exec -- lefthook install
   mise run test
 
   # remove .repoconf just before the final commit
