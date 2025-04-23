@@ -43,7 +43,7 @@ name="${name}@v0"
   done
 
   mise trust
-  mise exec -- sd "module: \"cue.example\"" "module: \"$name\"" "cue.mod/module.cue"
+  mise exec -- sd "module:.*" "module: \"$name\"" "cue.mod/module.cue"
   mise exec -- lefthook install
   mise run test
 
