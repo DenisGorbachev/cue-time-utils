@@ -1,3 +1,5 @@
+package time_utils
+
 import (
 	"time"
 )

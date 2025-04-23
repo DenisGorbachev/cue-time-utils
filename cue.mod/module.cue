@@ -1,4 +1,4 @@
-module: "github.com/denisgorbachev/cue-public-module-template@v0"
+module: "github.com/denisgorbachev/time-utils@v0"
 language: {
 	version: "v0.12.0"
 }
