@@ -22,6 +22,9 @@ depends = ["lint:docs"]
 [tasks."test"]
 depends = ["test:cue"]
 
+# TODO: run fmt, lint, test
+[tasks."fix"]
+
 [tasks."fmt:cue"]
 run = "cue fmt $(mise run find:cue)"
 
@@ -41,13 +44,13 @@ run = "find \"$MISE_PROJECT_ROOT\" -type f -name '*.cue'"
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
-REMARK_VALIDATE_LINKS="$(mise where npm:remark-validate-links)/lib/node_modules/remark-validate-links/index.js"
-REMARK_LINT_NO_DEAD_URLS="$(mise where npm:remark-lint-no-dead-urls)/lib/node_modules/remark-lint-no-dead-urls/index.js"
+REMARK_VALIDATE_LINKS="$(mise where npm:remark-validate-links)/node_modules/remark-validate-links/index.js"
+REMARK_LINT_NO_DEAD_URLS="$(mise where npm:remark-lint-no-dead-urls)/node_modules/remark-lint-no-dead-urls/index.js"
 remark --ignore-path .gitignore --ignore-pattern CHANGELOG.md --quiet --frail --no-stdout --use "$REMARK_VALIDATE_LINKS" --use "$REMARK_LINT_NO_DEAD_URLS" "$@"
 """
 
 [tasks."commitlint"]
-run = "commitlint --extends \"$(mise where npm:@commitlint/config-conventional)/lib/node_modules/@commitlint/config-conventional/lib/index.js\""
+run = "commitlint --extends \"$(mise where npm:@commitlint/config-conventional)/node_modules/@commitlint/config-conventional/lib/index.js\""
 
 [tasks."hurl:cue"]
 run = """
